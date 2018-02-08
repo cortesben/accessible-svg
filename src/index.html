@@ -19,25 +19,32 @@
       stroke-opacity: 1;
       stroke-width: 0.5;
     }
-    .states-select{
+
+    .states-select {
       position: absolute;
       top: 0;
       left: 0;
     }
 
-    .states-select .land{
+    .states-select .land {
       fill: #E62899;
       fill-opacity: 0.45;
       stroke: #AB0C78;
+    }
+
+    .states-select g:focus .land {
+      stroke: #E55302;
+      fill: #FFC82E;
     }
   </style>
 </head>
 
 <body>
 
+  <!-- SVG's must be wrapped in a div with a class of container -->
   <div class="container">
-    <!-- size of artwork -->
-    <svg class="states-static" viewBox="0 0 1036 724">
+    <!-- First SVG is the entire drawing -->
+    <svg class="states-static" viewBox="0 0 1036 724"> <!-- No width or height values on SVG -->
       <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="All_States">
           <rect id="Rectangle" fill="#D8D8D8" opacity="0" x="0" y="0" width="1036" height="724"></rect>
@@ -102,17 +109,34 @@
       </g>
     </svg>
 
-
+    <!-- Second SVG is the selectable options
+    Please read all comments below -->
     <svg class="states-select" viewBox="0 0 1036 724">
       <title>states</title>
       <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="states">
           <rect id="Rectangle" fill="#D8D8D8" opacity="0" x="0" y="0" width="1036" height="724"></rect>
           <g transform="translate(153.000000, 33.000000)" fill="#000000" fill-rule="nonzero">
-            <polygon class="land" id="US-ME" points="837.95 105.11 836.32 105.81 834.71 102.97 830.84 100.56 830.83 98.23 817.54 58.88 822.85 53.24 825.43 41.68 825.08 23.22 831.58 3.21 838.3 7.47 847.14 0.64 855.77 4.84 865.29 34.57 879.28 43.6 882.52 52.75 869.66 64.52 856.07 74.37 842.08 92.84"></polygon>
-            <polygon class="land" id="US-NV" points="117.11 158.41 94.82 269.59 91.35 287.51 90.42 288.09 88.54 291.24 86.26 289.86 83.12 287.57 79.33 286.79 77.52 289.27 78.5 292.65 77.5 297.43 76.98 301.82 76.97 306.36 74.94 310.49 50.69 275.73 25.88 239 0.97 200.9 18.74 135.25 67.56 147.49 67.58 147.43"></polygon>
-            <path d="M740.46,216.97 L743.14,217.21 L745.78,218.4 L745,221.05 L748.93,221.63 L752.68,223.43 L754.52,225.03 L754.71,226.35 L754.78,228.21 L752.26,230.92 L751.31,236.28 L753.88,237 L756.52,235.44 L758.2,238.35 L771.93,248.37 L777.67,258.21 L778.02,258.81 L786.22,271.42 L767.06,275.74 L748.13,279.85 L712.26,286.53 L681.65,290.69 L672.55,292.56 L645.51,295.7 L650.57,293.7 L654.1,291.78 L655.4,289.36 L659.95,285.98 L661.52,283.33 L661.69,281.45 L666.9,277.99 L673.03,270.21 L674.42,273.89 L676.75,275.6 L679.76,276.97 L684.97,273.36 L687.38,274.58 L693.74,271.6 L693.79,269.53 L695.94,269.98 L697.87,267.97 L700.41,267.86 L702.94,265.64 L702.97,263.53 L702.2,261 L703.92,256.71 L706.82,253.19 L707.1,249.74 L709.4,245.23 L710.2,240.07 L712.84,241.37 L715.74,242.48 L718.1,241.15 L718.56,238.96 L719.76,235.87 L721.1,232.34 L722.54,233.03 L724.57,229.66 L727.41,226.09 L729.13,223.46 L729.33,217.27 L739.36,221.53 L740.46,216.97 Z M779.81,256.46 L781.62,256.98 L787.5,237.07 L783.51,238.34 L782.48,240.16 L779.81,256.46 Z"
-              class="land" id="US-VA"></path>
+            <!-- Each selectable item needs both
+                    tabindex
+                    aria-labelledby 
+            -->
+            <g tabindex="0" aria-labelledby="state1 one">
+              <title id="state1">state one</title> <!-- each title needs a unique id -->
+              <desc id="one">First State You can Select</desc> <!-- each desc needs a unique id -->
+              <polygon class="land" id="US-ME" points="837.95 105.11 836.32 105.81 834.71 102.97 830.84 100.56 830.83 98.23 817.54 58.88 822.85 53.24 825.43 41.68 825.08 23.22 831.58 3.21 838.3 7.47 847.14 0.64 855.77 4.84 865.29 34.57 879.28 43.6 882.52 52.75 869.66 64.52 856.07 74.37 842.08 92.84"></polygon>
+            </g>
+            <g tabindex="0" aria-labelledby="state2 two">
+              <title id="state2">state two</title> <!-- each title needs a unique id -->
+              <desc id="two">Second State You can Select</desc> <!-- each desc needs a unique id -->
+              <polygon class="land" id="US-NV" points="117.11 158.41 94.82 269.59 91.35 287.51 90.42 288.09 88.54 291.24 86.26 289.86 83.12 287.57 79.33 286.79 77.52 289.27 78.5 292.65 77.5 297.43 76.98 301.82 76.97 306.36 74.94 310.49 50.69 275.73 25.88 239 0.97 200.9 18.74 135.25 67.56 147.49 67.58 147.43"></polygon>
+            </g>
+            <g tabindex="0" aria-labelledby="state3 three">
+              <title id="state3">state three</title> <!-- each title needs a unique id -->
+              <desc id="three">Third State You can Select</desc> <!-- each desc needs a unique id -->
+              <path d="M740.46,216.97 L743.14,217.21 L745.78,218.4 L745,221.05 L748.93,221.63 L752.68,223.43 L754.52,225.03 L754.71,226.35 L754.78,228.21 L752.26,230.92 L751.31,236.28 L753.88,237 L756.52,235.44 L758.2,238.35 L771.93,248.37 L777.67,258.21 L778.02,258.81 L786.22,271.42 L767.06,275.74 L748.13,279.85 L712.26,286.53 L681.65,290.69 L672.55,292.56 L645.51,295.7 L650.57,293.7 L654.1,291.78 L655.4,289.36 L659.95,285.98 L661.52,283.33 L661.69,281.45 L666.9,277.99 L673.03,270.21 L674.42,273.89 L676.75,275.6 L679.76,276.97 L684.97,273.36 L687.38,274.58 L693.74,271.6 L693.79,269.53 L695.94,269.98 L697.87,267.97 L700.41,267.86 L702.94,265.64 L702.97,263.53 L702.2,261 L703.92,256.71 L706.82,253.19 L707.1,249.74 L709.4,245.23 L710.2,240.07 L712.84,241.37 L715.74,242.48 L718.1,241.15 L718.56,238.96 L719.76,235.87 L721.1,232.34 L722.54,233.03 L724.57,229.66 L727.41,226.09 L729.13,223.46 L729.33,217.27 L739.36,221.53 L740.46,216.97 Z M779.81,256.46 L781.62,256.98 L787.5,237.07 L783.51,238.34 L782.48,240.16 L779.81,256.46 Z"
+                class="land" id="US-VA"></path>
+            </g>
           </g>
         </g>
       </g>
